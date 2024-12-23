@@ -24,15 +24,11 @@ class ContentViewModel:ObservableObject {
             let decoder = JSONDecoder()
             return try decoder.decode([MemoryItem].self, from: data)
         } catch is CocoaError {
-            print("Failed to read data")
-//            fatalError("Failed to read data from \(url.path())")
+            fatalError("Failed to read data from \(url.path())")
         } catch is DecodingError {
-            print("Failed to decode")
-//            fatalError("Failed to decode json data from \(url.path())")
+            fatalError("Failed to decode json data from \(url.path())")
         } catch {
-            print("other err")
-//            fatalError("Unknown error loading memoryItems \(error.localizedDescription)")
+            fatalError("Unknown error loading memoryItems \(error.localizedDescription)")
         }
-        return []
     }
 }
