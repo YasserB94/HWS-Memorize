@@ -11,16 +11,21 @@ struct ContentView: View {
     @StateObject var model = ContentViewModel()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text(model.message)
+        NavigationStack{
+            List(model.items, rowContent: { item in
+                NavigationLink {
+                    MemoryItemView(item: item)
+                        .padding()
+                } label: {
+                    Text(item.title)
+                }
+            })
+            .navigationTitle("Memorize")
         }
-        .padding()
+        
     }
 }
 
 #Preview {
-    ContentView()
+        ContentView()
 }
